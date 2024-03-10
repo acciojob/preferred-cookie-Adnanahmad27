@@ -6,6 +6,8 @@ form.addEventListener('submit',(e)=>{
 	let fontsize = form.fontsize.value;
 	document.cookie = `color=${fontcolor}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
 	document.cookie = `size=${fontsize}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+	document.documentElement.style.setProperty('--fontcolor', fontcolor);
+        document.documentElement.style.setProperty('--fontsize', `${fontsize}px`);
 });
 window.onload = () => {
     let cookies = document.cookie.split('; ');
