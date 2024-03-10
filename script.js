@@ -9,13 +9,15 @@ form.addEventListener('submit' , (e)=>{
 });
 
 window.onload = () => {
-	let cookies = document.cookie.split('; ');
-	let color = cookies.find(cookie => cookie.startsWith('color=')).split('=')[1];
-	let size = cookies.find(cookie => cookie.startsWith('size=')).split('=')[1];
-	if(color && size){
-		form.fontcolor.value = color;
-		form.fontsize.value = size;
-		document.documentElement.style.setProperty('--fontcolor', color);
-		document.documentElement.style.setProperty('--fontsize', `${size}px`);
-	}
+    let cookies = document.cookie.split('; ');
+    let colorCookie = cookies.find(cookie => cookie.startsWith('color='));
+    let sizeCookie = cookies.find(cookie => cookie.startsWith('size='));
+    if(colorCookie && sizeCookie){
+        let color = colorCookie.split('=')[1];
+        let size = sizeCookie.split('=')[1];
+        form.fontcolor.value = color;
+        form.fontsize.value = size;
+        document.documentElement.style.setProperty('--fontcolor', color);
+        document.documentElement.style.setProperty('--fontsize', `${size}px`);
+    }
 };
