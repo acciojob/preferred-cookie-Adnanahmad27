@@ -1,15 +1,14 @@
 //your JS code here. If required.
 const form = document.querySelector('form');
-form.addEventListener('submit' , (e)=>{
+form.addEventListener('submit',(e)=>{
 	e.preventDefault();
 	let fontcolor = form.fontcolor.value;
 	let fontsize = form.fontsize.value;
 	document.cookie = `color=${fontcolor}`;
 	document.cookie = `size=${fontsize}`;
 });
-
 window.onload = () => {
-    let cookies = document.cookie;
+    let cookies = document.cookie.split(';');
     let colorCookie = cookies.find(cookie => cookie.startsWith('color='));
     let sizeCookie = cookies.find(cookie => cookie.startsWith('size='));
     if(colorCookie && sizeCookie){
