@@ -1,4 +1,5 @@
 //your JS code here. If required.
+const form = document.querySelector('form');
 form.addEventListener('submit' , (e)=>{
 	e.preventDefault();
 	let fontcolor = form.fontcolor.value;
