@@ -1,19 +1,20 @@
 //your JS code here. If required.
-const form = document.querySelector('form');
-let haveValue = false;
-localStorage.setItem('thing1','rahul');
-localStorage.getItem('thing1');
-localStorage.removeItem('thing1');
-
 form.addEventListener('submit' , (e)=>{
 	e.preventDefault();
 	let fontcolor = form.fontcolor.value;
 	let fontsize = form.fontsize.value;
-	localStorage.setItem('color',fontcolor);
-	localStorage.setItem('size',fontsize);
-	haveValue = true;
+	document.cookie = `color=${fontcolor}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+	document.cookie = `size=${fontsize}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
 });
-if(haveValue){
-	form.fontcolor.value = localStorage.getItem('color');
-	form.fontcsize.value = localStorage.getItem('size');
-}
+
+window.onload = () => {
+	let cookies = document.cookie.split('; ');
+	let color = cookies.find(cookie => cookie.startsWith('color=')).split('=')[1];
+	let size = cookies.find(cookie => cookie.startsWith('size=')).split('=')[1];
+	if(color && size){
+		form.fontcolor.value = color;
+		form.fontsize.value = size;
+		document.documentElement.style.setProperty('--fontcolor', color);
+		document.documentElement.style.setProperty('--fontsize', `${size}px`);
+	}
+};
